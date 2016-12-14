@@ -3,7 +3,7 @@
 #include <ApplicationServices/ApplicationServices.h>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc.hpp"
-#include "barrel_dist.hpp"
+#include "barrel/barrel_dist.hpp"
 
 using namespace std;
 using namespace cv;
@@ -40,18 +40,22 @@ Mat cvMatFromCGImage(CGImage *image)
     return cvMat;
 }
 
+Mat captureScreen(){
+    CGDirectDisplayID displayId = CGMainDisplayID();
+    CGImageRef imageRef = CGDisplayCreateImage(displayId);
+    Mat img=cvMatFromCGImage(imageRef);
+    CGImageRelease(imageRef);
+    resize(img, img, cv::Size(img.size().width/3, img.size().height/3));
+    return img;
+}
+
 int main(void)
 {
     namedWindow("VR vision");
     while(true){
-        CGDirectDisplayID displayId = CGMainDisplayID();
-        CGImageRef imageRef = CGDisplayCreateImage(displayId);
-        Mat img=cvMatFromCGImage(imageRef);
-        CGImageRelease(imageRef);
-        resize(img, img, cv::Size(img.size().width/3, img.size().height/3));
-        IplImage input=img;
-        prepare_barrel_distortion(&input, input.width/2, input.height/2,.0000008,.0000016);
-        Mat dst=barrel_distortion(&input);
+        IplImage input=captureScreen();
+        PrepareBarrelDistortion(&input, input.width/2, input.height/2,.0000008,.0000016);
+        Mat dst=BarrelDistortion(&input);
         Mat lift;
         hconcat(dst, dst, lift);
         imshow("Result", lift);

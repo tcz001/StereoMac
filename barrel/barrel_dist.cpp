@@ -22,6 +22,7 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+
 #include "barrel_dist.hpp"
 
 using namespace cv;
@@ -30,7 +31,7 @@ IplImage* mapy;
 int barrel_ready = 0;
 
 
-void prepare_barrel_distortion(IplImage* img, double Cx,double Cy,double kx,double ky)
+void PrepareBarrelDistortion(IplImage* img, double Cx,double Cy,double kx,double ky)
 {
 	if(barrel_ready)
 		return;
@@ -65,7 +66,7 @@ void prepare_barrel_distortion(IplImage* img, double Cx,double Cy,double kx,doub
 	barrel_ready = 1;
 }
 
-IplImage* barrel_distortion(IplImage* img)
+IplImage* BarrelDistortion(IplImage* img)
 {
 	IplImage* temp = cvCloneImage(img);
     cvRemap( temp, img, mapx, mapy );
@@ -74,7 +75,7 @@ IplImage* barrel_distortion(IplImage* img)
     return img;
 }
 
-void delete_barrel_distortion(void)
+void DeleteBarrelDistortion(void)
 {
 	if(!barrel_ready)
 		return;

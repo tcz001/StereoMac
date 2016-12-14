@@ -17,6 +17,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-void prepare_barrel_distortion(IplImage* img, double Cx,double Cy,double kx,double ky);
-IplImage* barrel_distortion(IplImage* img);
-void delete_barrel_distortion(void);
+void PrepareBarrelDistortion(IplImage* img, double Cx,double Cy,double kx,double ky);
+IplImage* BarrelDistortion(IplImage* img);
+void DeleteBarrelDistortion(void);
