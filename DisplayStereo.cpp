@@ -59,7 +59,7 @@ int main(void)
         Mat lift;
         hconcat(dst, dst, lift);
         dst.release();
-        imshow("Result", lift);
+        imshow("VR vision", lift);
         waitKey(1);
         lift.release();
     }

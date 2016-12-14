@@ -13,6 +13,8 @@ Using:
 ## Quick Start
 
 ```
+git clone git@github.com:tcz001/StereoMac.git
+cd StereoMac
 cmake . && make && ./DisplayStereo
 ```
 
