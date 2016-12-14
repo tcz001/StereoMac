@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project( Stereo )
+project( StereoMac )
 
 # Barrel Distortion
 add_subdirectory ( Barrel )
