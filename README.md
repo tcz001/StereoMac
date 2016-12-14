@@ -2,6 +2,8 @@
 
 A stereo vision Screen capture tool for Mac OS X
 
+![Screen Shot](/screenshot.png?raw=true "Screen Shot")
+
 Using:
 
 - OpenCV
