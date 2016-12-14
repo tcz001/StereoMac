@@ -58,8 +58,10 @@ int main(void)
         Mat dst=BarrelDistortion(&input);
         Mat lift;
         hconcat(dst, dst, lift);
+        dst.release();
         imshow("Result", lift);
         waitKey(1);
+        lift.release();
     }
     system("pause");
     destroyWindow("VR vision");
